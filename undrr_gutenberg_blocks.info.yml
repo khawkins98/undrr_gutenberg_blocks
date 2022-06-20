@@ -1,6 +1,6 @@
-name: Example Block
+name: UNDRR Gutenberg blocks
 type: module
-description: Example block for Gutenberg.
+description: Gutenberg blocks to fit the UNDRR look and content needs.
 package: Gutenberg
 core: 8.x
 core_version_requirement: ^8 || ^9
