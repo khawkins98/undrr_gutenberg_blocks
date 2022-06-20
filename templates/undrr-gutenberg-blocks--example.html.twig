@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Default theme implementation to display an example Gutenberg block server-side.
+ * Default theme fallback for all blocks with a name matching "undrr/*"
  *
  * Available variables:
  * - block_name: The Gutenberg block name.
@@ -11,16 +11,13 @@
  *   be added to the main container tag of this template.
  *
  * @see template_preprocess_gutenberg_block()
- * @see template_preprocess_gutenberg_block__example__dynamic_block()
+ * @see template_preprocess_gutenberg_block__example()
  *
  * @ingroup themeable
  */
 #}
 <div{{ attributes }}>
-    <div>{{ '— Hello from the Gutenberg Drupal twig backend.'|t }}</div>
-    <div class="dynamic-block-title">
-        <h2>{{ block_attributes.title }}</h2>
-    </div>
+    <div>{{ '— Hello from the Gutenberg Drupal example namespace fallback.' }}</div>
     <div class="dynamic-block-content">
         {{ block_content }}
     </div>

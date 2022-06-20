@@ -35,10 +35,10 @@ var InnerBlocks = blockEditor.InnerBlocks,
 
 var __ = Drupal.t;
 
-var settings = {
-  title: __('Gutenberg Example Block'),
-  description: __('Gutenberg Example Block'),
-  icon: 'welcome-learn-more',
+var undrrHeroSettings = {
+  title: __('UNDRR Hero block'),
+  description: __('A hero to call attention'),
+  icon: 'admin-site-alt3',
   attributes: {
     title: {
       type: 'string'
@@ -56,6 +56,147 @@ var settings = {
         attributes = _ref.attributes,
         setAttributes = _ref.setAttributes,
         isSelected = _ref.isSelected;
+    var title = attributes.title,
+        subtitle = attributes.subtitle,
+        text = attributes.text;
+
+
+    return React.createElement(
+      Fragment,
+      null,
+      React.createElement(
+        'section',
+        { className: className + ' vf-hero | vf-u-fullbleed' },
+        React.createElement(
+          'div',
+          { className: 'vf-hero__content | vf-box | vf-stack vf-stack--400' },
+          React.createElement(RichText, {
+            identifier: 'title',
+            tagName: 'h2',
+            value: title,
+            placeholder: __('Title'),
+            onChange: function onChange(nextTitle) {
+              setAttributes({
+                title: nextTitle
+              });
+            },
+            onSplit: function onSplit() {
+              return null;
+            },
+            unstableOnSplit: function unstableOnSplit() {
+              return null;
+            }
+          }),
+          React.createElement(RichText, {
+            identifier: 'subtitle',
+            tagName: 'div',
+            value: subtitle,
+            placeholder: __('Subtitle goes here'),
+            onChange: function onChange(nextSubtitle) {
+              setAttributes({
+                subtitle: nextSubtitle
+              });
+            },
+            onSplit: function onSplit() {
+              return null;
+            },
+            unstableOnSplit: function unstableOnSplit() {
+              return null;
+            }
+          }),
+          React.createElement(RichText, {
+            identifier: 'text',
+            tagName: 'p',
+            value: text,
+            placeholder: __('Text'),
+            onChange: function onChange(nextText) {
+              setAttributes({
+                text: nextText
+              });
+            }
+          })
+        )
+      ),
+      React.createElement(
+        InspectorControls,
+        null,
+        React.createElement(
+          PanelBody,
+          { title: __('Block Settings') },
+          React.createElement(
+            'div',
+            null,
+            title
+          )
+        )
+      )
+    );
+  },
+  save: function save(_ref2) {
+    var className = _ref2.className,
+        attributes = _ref2.attributes;
+    var title = attributes.title,
+        subtitle = attributes.subtitle,
+        text = attributes.text;
+
+
+    return React.createElement(
+      'section',
+      { className: className + ' vf-hero | vf-u-fullbleed' },
+      React.createElement(
+        'div',
+        { className: 'vf-hero__content | vf-box | vf-stack vf-stack--400' },
+        title && React.createElement(
+          'h2',
+          { 'class': 'vf-hero__heading' },
+          title
+        ),
+        subtitle && React.createElement(
+          'p',
+          { 'class': 'vf-hero__subheading' },
+          subtitle
+        ),
+        text && React.createElement(
+          'p',
+          { 'class': 'vf-hero__text' },
+          text
+        ),
+        React.createElement(
+          'a',
+          { 'class': 'vf-hero__link', href: 'JavaScript:Void(0);' },
+          'Learn more',
+          React.createElement(
+            'svg',
+            { width: '24', height: '24', xmlns: 'http://www.w3.org/2000/svg' },
+            React.createElement('path', { d: 'M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0C5.376.008.008 5.376 0 12zm13.707-5.209l4.5 4.5a1 1 0 010 1.414l-4.5 4.5a1 1 0 01-1.414-1.414l2.366-2.367a.25.25 0 00-.177-.424H6a1 1 0 010-2h8.482a.25.25 0 00.177-.427l-2.366-2.368a1 1 0 011.414-1.414z', fill: '', 'fill-rule': 'nonzero' })
+          )
+        )
+      )
+    );
+  }
+};
+
+var exampleBlockSettings = {
+  title: __('UNDRR Example Block'),
+  description: __('UNDRR Example Block'),
+  icon: 'welcome-learn-more',
+  attributes: {
+    title: {
+      type: 'string'
+    },
+    subtitle: {
+      type: 'string'
+    },
+    text: {
+      type: 'string'
+    }
+  },
+
+  edit: function edit(_ref3) {
+    var className = _ref3.className,
+        attributes = _ref3.attributes,
+        setAttributes = _ref3.setAttributes,
+        isSelected = _ref3.isSelected;
     var title = attributes.title,
         subtitle = attributes.subtitle,
         text = attributes.text;
@@ -91,7 +232,7 @@ var settings = {
             identifier: 'subtitle',
             tagName: 'div',
             value: subtitle,
-            placeholder: __('Subtitle'),
+            placeholder: __('Subtitle goes here'),
             onChange: function onChange(nextSubtitle) {
               setAttributes({
                 subtitle: nextSubtitle
@@ -155,9 +296,9 @@ var settings = {
       )
     );
   },
-  save: function save(_ref2) {
-    var className = _ref2.className,
-        attributes = _ref2.attributes;
+  save: function save(_ref4) {
+    var className = _ref4.className,
+        attributes = _ref4.attributes;
     var title = attributes.title,
         subtitle = attributes.subtitle,
         text = attributes.text;
@@ -199,8 +340,8 @@ var settings = {
 };
 
 var dynamicBlockSettings = {
-  title: __('Gutenberg Example Dynamic Block'),
-  description: __('Gutenberg example dynamic block that can be rendered server-side.'),
+  title: __('UNDRR Example Dynamic Block'),
+  description: __('UNDRR example dynamic block that can be rendered server-side.'),
   icon: 'welcome-learn-more',
   attributes: {
     title: {
@@ -208,11 +349,11 @@ var dynamicBlockSettings = {
     }
   },
 
-  edit: function edit(_ref3) {
-    var className = _ref3.className,
-        attributes = _ref3.attributes,
-        setAttributes = _ref3.setAttributes,
-        isSelected = _ref3.isSelected;
+  edit: function edit(_ref5) {
+    var className = _ref5.className,
+        attributes = _ref5.attributes,
+        setAttributes = _ref5.setAttributes,
+        isSelected = _ref5.isSelected;
     var title = attributes.title;
 
 
@@ -231,7 +372,7 @@ var dynamicBlockSettings = {
           identifier: 'title',
           tagName: 'h2',
           value: title,
-          placeholder: __('Title'),
+          placeholder: __('Title goes here'),
           onChange: function onChange(title) {
             setAttributes({
               title: title
@@ -252,18 +393,27 @@ var dynamicBlockSettings = {
       )
     );
   },
-  save: function save(_ref4) {
-    var className = _ref4.className,
-        attributes = _ref4.attributes;
+  save: function save(_ref6) {
+    var className = _ref6.className,
+        attributes = _ref6.attributes;
     var title = attributes.title;
 
-    return React.createElement(InnerBlocks.Content, null);
+    return React.createElement(
+      'div',
+      { className: className },
+      title && React.createElement(
+        'h2',
+        null,
+        title
+      ),
+      React.createElement(InnerBlocks.Content, null)
+    );
   }
 };
 
 var category = {
-  slug: 'example',
-  title: __('Examples')
+  slug: 'undrr',
+  title: __('UNDRR')
 };
 
 var currentCategories = select('core/blocks').getCategories().filter(function (item) {
@@ -271,5 +421,6 @@ var currentCategories = select('core/blocks').getCategories().filter(function (i
 });
 dispatch('core/blocks').setCategories([category].concat(_toConsumableArray(currentCategories)));
 
-registerBlockType(category.slug + '/example-block', _extends({ category: category.slug }, settings));
+registerBlockType(category.slug + '/undrr-hero-block', _extends({ category: category.slug }, undrrHeroSettings));
+registerBlockType(category.slug + '/example-block', _extends({ category: category.slug }, exampleBlockSettings));
 registerBlockType(category.slug + '/dynamic-block', _extends({ category: category.slug }, dynamicBlockSettings));

@@ -8,7 +8,7 @@
 /**
  * Preprocess the example dynamic block.
  */
-function template_preprocess_gutenberg_block__example__dynamic_block(&$variables) {
+function template_preprocess_undrr_gutenberg_blocks__example__dynamic_block(&$variables) {
   // Dynamic block attribute.
   $variables['attributes']['data-example-dynamic-attribute'] = $variables['block_name'];
 }
@@ -16,9 +16,9 @@ function template_preprocess_gutenberg_block__example__dynamic_block(&$variables
 /**
  * Preprocess all blocks belonging to the 'example' namespace.
  *
- * Requires the gutenberg-block--example.html.twig template to exist.
+ * Requires the undrr-gutenberg-blocks--example.html.twig template to exist.
  */
-function template_preprocess_gutenberg_block__example(&$variables) {
+function template_preprocess_undrr_gutenberg_blocks__example(&$variables) {
   // Dynamic block attribute.
   $variables['attributes']['data-example-namespace-dynamic-attribute'] = 'true';
 }
