@@ -1,7 +1,8 @@
 /**
  * Don't edit this file. Find all style at ./sass folder.
  **/
-.undrr-grid--column-wrapper {
+.undrr-grid--column-wrapper .undrr-grid--column-wrapper--inner,
+.undrr-grid--column-wrapper .view-content {
   display: grid;
   grid-gap: 1em;
 }
