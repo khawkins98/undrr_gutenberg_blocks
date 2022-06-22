@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto+Slab:100,300,400,700|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 @import "../common/_vf-custom-props.scss";
 @import "../common/undrr-grid.scss";
 @import "../common/vf-card.scss";
@@ -23,5 +25,19 @@
   padding: 15px;
 }
 
+// unset some gutenberg resets
+body .editor-styles-wrapper {
+  font-family: "Roboto";
+  font-size:unset;
+  line-height:unset;
+ }
 
- 
+ body .editor-styles-wrapper p {
+  margin: unset;
+  font-size: unset;
+  line-height: unset;
+}
+
+body .wp-block {
+  max-width: 1164px;
+}

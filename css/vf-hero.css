@@ -40,7 +40,6 @@
 }
 
 .vf-hero__kicker {
-  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 16px;
   color: #373a36;
   font-weight: 400;
@@ -59,7 +58,6 @@
 }
 
 .vf-hero__heading {
-  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 42px;
   color: #1a1c1a;
   font-weight: 700;
@@ -81,7 +79,6 @@
 }
 
 .vf-hero__subheading {
-  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 21px;
   color: #1a1c1a;
   font-weight: 500;
@@ -92,7 +89,6 @@
 }
 
 .vf-hero__text {
-  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 19px;
   color: #1a1c1a;
   font-weight: 400;
@@ -119,7 +115,6 @@
 }
 
 .vf-hero__link {
-  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 21px;
   color: #1a1c1a;
   font-weight: 500;

@@ -1,3 +1,18 @@
+// undrr tweaks
+.undrr-card__top {
+  position: relative;
+}
+.vf-card__subheading {
+  position: absolute;
+  bottom: 0;
+  color: rgba(255,255,255,.9);
+  background: #b7082a;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  padding: .1rem .75rem;
+  font-family: "Roboto Condensed"
+}
 
 /*!
  * Component: @visual-framework/vf-card
@@ -11,8 +26,8 @@
       align-content: start;
   background-color: var(--card-background-color);
   /* border: 1px solid var(--vf-card-theme-color--border, var(--card-border-color, )); */
-  -webkit-box-shadow: 0 0.125rem 0.25rem rgba(84, 88, 90, 0.5);
-          box-shadow: 0 0.125rem 0.25rem rgba(84, 88, 90, 0.5);
+  // -webkit-box-shadow: 0 0.125rem 0.25rem rgba(84, 88, 90, 0.5);
+          // box-shadow: 0 0.125rem 0.25rem rgba(84, 88, 90, 0.5);
   display: grid;
   position: relative;
 }
@@ -35,7 +50,7 @@
 
 .vf-card__content {
   grid-column: 1/-1;
-  padding: 1rem;
+  // padding: 1rem;
 }
 .vf-card__content .vf-button {
   position: relative;
@@ -76,11 +91,11 @@
 
 .vf-card__title,
 .vf-card__heading {
-  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 24px;
   font-weight: 500;
   line-height: 1.333;
   margin: var(--vf-stack-margin, 0) 0 0 0;
+  padding-top: 1rem;
   background-color: var(--card-background-color);
   color: #1a1c1a;
   color: var(--card-text-color, #1a1c1a);
@@ -112,7 +127,7 @@
   transition-property: box-shadow, -webkit-box-shadow;
   -webkit-transition-timing-function: ease-in-out;
           transition-timing-function: ease-in-out;
-  z-index: 512;
+  z-index: 10;
 }
 .vf-card__title .vf-card__link:hover,
 .vf-card__heading .vf-card__link:hover {
@@ -122,8 +137,8 @@
 }
 .vf-card__title .vf-card__link:hover::after,
 .vf-card__heading .vf-card__link:hover::after {
-  -webkit-box-shadow: 0 0 0.125rem 0.125rem rgba(112, 115, 114, 0.75);
-          box-shadow: 0 0 0.125rem 0.125rem rgba(112, 115, 114, 0.75);
+  // -webkit-box-shadow: 0 0 0.125rem 0.125rem rgba(112, 115, 114, 0.75);
+  //         box-shadow: 0 0 0.125rem 0.125rem rgba(112, 115, 114, 0.75);
 }
 .vf-card__title .vf-card__link:hover .vf-card__heading__icon,
 .vf-card__title .vf-card__link:focus .vf-card__heading__icon,
@@ -146,16 +161,12 @@
 .vf-card__subheading {
   --vf-stack-margin--custom: 0.25rem;
   --vf-stack-margin: 0.25rem;
-  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
-  font-size: 19px;
-  font-weight: 500;
   line-height: 1.5;
   margin: var(--vf-stack-margin, 0) 0 0 0;
   word-break: break-word;
 }
 
 .vf-card__text {
-  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 19px;
   font-weight: 400;
   line-height: 1.421;
@@ -316,7 +327,6 @@ html:not(.vf-disable-deprecated) .vf-card--hard .vf-card__content {
 }
 html:not(.vf-disable-deprecated) .vf-card--hard .vf-card__title,
 html:not(.vf-disable-deprecated) .vf-card--hard .vf-card__heading {
-  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.57;
