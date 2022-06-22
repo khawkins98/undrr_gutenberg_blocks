@@ -1,0 +1,24 @@
+
+// Basic grid stuff
+.undrr-grid--column-wrapper {
+    display: grid;
+    grid-gap: 1em;
+  }
+  .undrr-grid--column-wrapper--2 .undrr-grid--column-wrapper--inner,
+  .undrr-grid--column-wrapper--2 .view-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+   
+  .undrr-grid--column-wrapper--3 .undrr-grid--column-wrapper--inner,
+  .undrr-grid--column-wrapper--3 .view-content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .undrr-grid--column-wrapper--4 .undrr-grid--column-wrapper--inner,
+  .undrr-grid--column-wrapper--4 .view-content {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .undrr-grid--column-wrapper--item {
+    grid-column: span 1;
+  }

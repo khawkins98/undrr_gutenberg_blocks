@@ -1,22 +1,28 @@
 /**
  * Don't edit this file. Find all style at ./sass folder.
  **/
-.wp-block-example-example-block .info {
-  padding: 20px;
-  border: solid 1px #ccc;
-  background-color: #e0e0e0;
-  font-family: monospace;
-  position: absolute;
-  right: -20px;
-  bottom: -120px;
-  width: 300px;
-  box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.75);
+.undrr-grid--column-wrapper {
+  display: grid;
+  grid-gap: 1em;
 }
 
-.wp-block-example-dynamic-block {
-  background-color: #ff0;
-  border: 2px solid #000;
-  padding: 15px;
+.undrr-grid--column-wrapper--2 .undrr-grid--column-wrapper--inner,
+.undrr-grid--column-wrapper--2 .view-content {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.undrr-grid--column-wrapper--3 .undrr-grid--column-wrapper--inner,
+.undrr-grid--column-wrapper--3 .view-content {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.undrr-grid--column-wrapper--4 .undrr-grid--column-wrapper--inner,
+.undrr-grid--column-wrapper--4 .view-content {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.undrr-grid--column-wrapper--item {
+  grid-column: span 1;
 }
 
 /* stylelint-disable */
@@ -115,10 +121,10 @@
 
 /* stylelint-enable */
 /*!
- * Component: @visual-framework/vf-hero
- * Version: 3.3.3
- * Location: components/undefined
- */
+   * Component: @visual-framework/vf-hero
+   * Version: 3.3.3
+   * Location: components/undefined
+   */
 /* stylelint-disable */
 .vf-hero {
   background-color: #18974c;
@@ -302,6 +308,24 @@
 
 .vf-hero--1600 > .vf-box {
   --vf-box-padding: calc(var(--vf-hero--spacing) / 2);
+}
+
+.wp-block-example-example-block .info {
+  padding: 20px;
+  border: solid 1px #ccc;
+  background-color: #e0e0e0;
+  font-family: monospace;
+  position: absolute;
+  right: -20px;
+  bottom: -120px;
+  width: 300px;
+  box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.75);
+}
+
+.wp-block-example-dynamic-block {
+  background-color: #ff0;
+  border: 2px solid #000;
+  padding: 15px;
 }
 
 /*# sourceMappingURL=edit.css.map */

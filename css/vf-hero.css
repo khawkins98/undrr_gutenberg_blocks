@@ -1,30 +1,6 @@
 /**
  * Don't edit this file. Find all style at ./sass folder.
  **/
-.undrr-grid--column-wrapper {
-  display: grid;
-  grid-gap: 1em;
-}
-
-.undrr-grid--column-wrapper--2 .undrr-grid--column-wrapper--inner,
-.undrr-grid--column-wrapper--2 .view-content {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.undrr-grid--column-wrapper--3 .undrr-grid--column-wrapper--inner,
-.undrr-grid--column-wrapper--3 .view-content {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.undrr-grid--column-wrapper--4 .undrr-grid--column-wrapper--inner,
-.undrr-grid--column-wrapper--4 .view-content {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.undrr-grid--column-wrapper--item {
-  grid-column: span 1;
-}
-
 /* stylelint-disable */
 :root {
   --vf-color--green: #18974c;
@@ -310,30 +286,4 @@
   --vf-box-padding: calc(var(--vf-hero--spacing) / 2);
 }
 
-.wp-block-undrr-example-block {
-  display: flex;
-  flex-direction: row;
-}
-
-.wp-block-undrr-example-block .column {
-  flex: 1;
-}
-
-.wp-block-undrr-example-block .icon {
-  text-align: center;
-}
-
-.wp-block-undrr-example-block .icon svg {
-  width: 120px;
-  height: 120px;
-}
-
-.wp-block-undrr-example-dynamic-block {
-  background-color: #0f0;
-  border: 2px solid #f00;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-}
-
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=vf-hero.css.map */
