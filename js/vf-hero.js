@@ -23,6 +23,7 @@ var PanelBody = components.PanelBody,
     BaseControl = components.BaseControl,
     Icon = components.Icon,
     RangeControl = components.RangeControl,
+    TextControl = components.TextControl,
     IconButton = components.IconButton,
     Toolbar = components.Toolbar,
     SelectControl = components.SelectControl;
@@ -30,21 +31,35 @@ var InnerBlocks = blockEditor.InnerBlocks,
     RichText = blockEditor.RichText,
     InspectorControls = blockEditor.InspectorControls,
     PanelColorSettings = blockEditor.PanelColorSettings,
+    MediaUpload = blockEditor.MediaUpload,
+    MediaPlaceholder = blockEditor.MediaPlaceholder,
     BlockControls = blockEditor.BlockControls,
     useBlockProps = blockEditor.useBlockProps;
 
 var __ = Drupal.t;
 
-var exampleBlockSettings = {
-  title: __('UNDRR Example Block'),
-  description: __('UNDRR Example Block'),
-  icon: 'welcome-learn-more',
+var undrrHeroSettings = {
+  title: __('UNDRR Hero block'),
+  description: __('A hero to call attention'),
+  icon: 'admin-site-alt3',
   attributes: {
     title: {
       type: 'string'
     },
     subtitle: {
       type: 'string'
+    },
+    mediaID: {
+      type: 'number'
+    },
+    mediaURL: {
+      type: 'string',
+      source: 'attribute',
+      selector: 'img',
+      attribute: 'src'
+    },
+    heroHeight: {
+      type: 'integer'
     },
     text: {
       type: 'string'
@@ -57,19 +72,25 @@ var exampleBlockSettings = {
         setAttributes = _ref.setAttributes,
         isSelected = _ref.isSelected;
     var title = attributes.title,
+        mediaURL = attributes.mediaURL,
         subtitle = attributes.subtitle,
         text = attributes.text;
 
+
+    var vfBackgroundImage = {
+      "--vf-hero--bg-image": "url('" + mediaURL + "')"
+    };
+    var blockProps = useBlockProps({ style: vfBackgroundImage });
 
     return React.createElement(
       Fragment,
       null,
       React.createElement(
-        'div',
-        { className: className },
+        'section',
+        _extends({}, blockProps, { className: className + ' vf-hero | vf-u-fullbleed' }),
         React.createElement(
           'div',
-          { className: 'column' },
+          { className: 'vf-hero__content | vf-box | vf-stack vf-stack--400' },
           React.createElement(RichText, {
             identifier: 'title',
             tagName: 'h2',
@@ -115,29 +136,6 @@ var exampleBlockSettings = {
               });
             }
           })
-        ),
-        React.createElement(
-          'div',
-          { className: 'column' },
-          React.createElement(
-            'div',
-            { className: 'icon' },
-            React.createElement(Icon, { icon: 'welcome-learn-more' })
-          ),
-          isSelected && React.createElement(
-            'div',
-            { className: 'info' },
-            React.createElement(
-              'p',
-              null,
-              'This is Gutenberg\'s example block.'
-            ),
-            React.createElement(
-              'p',
-              null,
-              'To test it just fill the "fields" on the left and save.'
-            )
-          )
         )
       ),
       React.createElement(
@@ -147,125 +145,84 @@ var exampleBlockSettings = {
           PanelBody,
           { title: __('Block Settings') },
           React.createElement(
-            'div',
+            'h2',
             null,
-            title
-          )
+            'Background image'
+          ),
+          React.createElement(MediaUpload, {
+            onSelect: function onSelect(media) {
+              setAttributes({
+                mediaURL: media.url,
+                mediaID: media.id
+              });
+            },
+            type: 'image',
+
+            render: function render(_ref2) {
+              var open = _ref2.open;
+              return React.createElement(
+                'button',
+                { className: 'button', onClick: open },
+                'Open media library'
+              );
+            }
+          }),
+          React.createElement(TextControl, {
+            label: 'Height',
+            value: attributes.heroHeight,
+            onChange: function onChange(val) {
+              setAttributes({ heroHeight: parseInt(val) });
+            }
+          })
         )
       )
     );
   },
-  save: function save(_ref2) {
-    var className = _ref2.className,
-        attributes = _ref2.attributes;
+  save: function save(_ref3) {
+    var className = _ref3.className,
+        attributes = _ref3.attributes;
     var title = attributes.title,
         subtitle = attributes.subtitle,
+        mediaID = attributes.mediaID,
+        mediaURL = attributes.mediaURL,
+        heroHeight = attributes.heroHeight,
         text = attributes.text;
 
 
+    var blockProps = useBlockProps.save();
+
     return React.createElement(
-      'div',
-      { className: className },
+      'section',
+      _extends({}, blockProps, { className: className + ' vf-hero | vf-u-fullbleed' }),
       React.createElement(
         'div',
-        { className: 'column' },
+        { className: 'vf-hero__content | vf-box | vf-stack vf-stack--400' },
         title && React.createElement(
           'h2',
-          null,
+          { 'class': 'vf-hero__heading' },
           title
         ),
         subtitle && React.createElement(
-          'div',
-          null,
+          'p',
+          { 'class': 'vf-hero__subheading' },
           subtitle
         ),
         text && React.createElement(
           'p',
-          null,
+          { 'class': 'vf-hero__text' },
           text
-        )
-      ),
-      React.createElement(
-        'div',
-        { className: 'column' },
+        ),
         React.createElement(
-          'div',
-          { className: 'icon' },
-          React.createElement(Icon, { icon: 'welcome-learn-more' })
+          'a',
+          { 'class': 'vf-hero__link', href: 'JavaScript:Void(0);' },
+          'Learn more',
+          React.createElement(
+            'svg',
+            { width: '24', height: '24', xmlns: 'http://www.w3.org/2000/svg' },
+            React.createElement('path', { d: 'M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0C5.376.008.008 5.376 0 12zm13.707-5.209l4.5 4.5a1 1 0 010 1.414l-4.5 4.5a1 1 0 01-1.414-1.414l2.366-2.367a.25.25 0 00-.177-.424H6a1 1 0 010-2h8.482a.25.25 0 00.177-.427l-2.366-2.368a1 1 0 011.414-1.414z', fill: '', 'fill-rule': 'nonzero' })
+          )
         )
       )
-    );
-  }
-};
-
-var dynamicBlockSettings = {
-  title: __('UNDRR Example Dynamic Block'),
-  description: __('UNDRR example dynamic block that can be rendered server-side.'),
-  icon: 'welcome-learn-more',
-  attributes: {
-    title: {
-      type: 'string'
-    }
-  },
-
-  edit: function edit(_ref3) {
-    var className = _ref3.className,
-        attributes = _ref3.attributes,
-        setAttributes = _ref3.setAttributes,
-        isSelected = _ref3.isSelected;
-    var title = attributes.title;
-
-
-    return React.createElement(
-      'div',
-      { className: className },
-      React.createElement(
-        'div',
-        null,
-        '\u2014 Hello from the Gutenberg JS editor.'
-      ),
-      React.createElement(
-        'div',
-        { className: 'dynamic-block-title' },
-        React.createElement(RichText, {
-          identifier: 'title',
-          tagName: 'h2',
-          value: title,
-          placeholder: __('Title goes here'),
-          onChange: function onChange(title) {
-            setAttributes({
-              title: title
-            });
-          },
-          onSplit: function onSplit() {
-            return null;
-          },
-          unstableOnSplit: function unstableOnSplit() {
-            return null;
-          }
-        })
-      ),
-      React.createElement(
-        'div',
-        { className: 'dynamic-block-content' },
-        React.createElement(InnerBlocks, null)
-      )
-    );
-  },
-  save: function save(_ref4) {
-    var className = _ref4.className,
-        attributes = _ref4.attributes;
-    var title = attributes.title;
-
-    return React.createElement(
-      'div',
-      { className: className },
-      title && React.createElement(
-        'h2',
-        null,
-        title
-      ),
-      React.createElement(InnerBlocks.Content, null)
     );
   }
 };
@@ -280,5 +237,4 @@ var currentCategories = select('core/blocks').getCategories().filter(function (i
 });
 dispatch('core/blocks').setCategories([category].concat(_toConsumableArray(currentCategories)));
 
-registerBlockType(category.slug + '/example-block', _extends({ category: category.slug }, exampleBlockSettings));
-registerBlockType(category.slug + '/dynamic-block', _extends({ category: category.slug }, dynamicBlockSettings));
+registerBlockType(category.slug + '/undrr-hero-block', _extends({ category: category.slug }, undrrHeroSettings));

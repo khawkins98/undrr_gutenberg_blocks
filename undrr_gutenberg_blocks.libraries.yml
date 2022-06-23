@@ -2,6 +2,7 @@ block-edit:
   version: VERSION
   js:
     js/index.js: { }
+    js/vf-hero.js: { }
   css:
     theme:
       css/style.css: { }
