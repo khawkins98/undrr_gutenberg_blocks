@@ -23,6 +23,7 @@ var PanelBody = components.PanelBody,
     BaseControl = components.BaseControl,
     Icon = components.Icon,
     RangeControl = components.RangeControl,
+    TextControl = components.TextControl,
     IconButton = components.IconButton,
     Toolbar = components.Toolbar,
     SelectControl = components.SelectControl;
@@ -31,7 +32,9 @@ var InnerBlocks = blockEditor.InnerBlocks,
     InspectorControls = blockEditor.InspectorControls,
     PanelColorSettings = blockEditor.PanelColorSettings,
     MediaUpload = blockEditor.MediaUpload,
-    BlockControls = blockEditor.BlockControls;
+    MediaPlaceholder = blockEditor.MediaPlaceholder,
+    BlockControls = blockEditor.BlockControls,
+    useBlockProps = blockEditor.useBlockProps;
 
 var __ = Drupal.t;
 
@@ -46,6 +49,18 @@ var undrrHeroSettings = {
     subtitle: {
       type: 'string'
     },
+    mediaID: {
+      type: 'number'
+    },
+    mediaURL: {
+      type: 'string',
+      source: 'attribute',
+      selector: 'img',
+      attribute: 'src'
+    },
+    heroHeight: {
+      type: 'integer'
+    },
     text: {
       type: 'string'
     }
@@ -57,16 +72,22 @@ var undrrHeroSettings = {
         setAttributes = _ref.setAttributes,
         isSelected = _ref.isSelected;
     var title = attributes.title,
+        mediaURL = attributes.mediaURL,
         subtitle = attributes.subtitle,
         text = attributes.text;
 
+
+    var vfBackgroundImage = {
+      "--vf-hero--bg-image": "url('" + mediaURL + "')"
+    };
+    var blockProps = useBlockProps({ style: vfBackgroundImage });
 
     return React.createElement(
       Fragment,
       null,
       React.createElement(
         'section',
-        { className: className + ' vf-hero | vf-u-fullbleed' },
+        _extends({}, blockProps, { className: className + ' vf-hero | vf-u-fullbleed' }),
         React.createElement(
           'div',
           { className: 'vf-hero__content | vf-box | vf-stack vf-stack--400' },
@@ -124,25 +145,55 @@ var undrrHeroSettings = {
           PanelBody,
           { title: __('Block Settings') },
           React.createElement(
-            'div',
+            'h2',
             null,
-            title
-          )
+            'Background image'
+          ),
+          React.createElement(MediaUpload, {
+            onSelect: function onSelect(media) {
+              setAttributes({
+                mediaURL: media.url,
+                mediaID: media.id
+              });
+            },
+            type: 'image',
+
+            render: function render(_ref2) {
+              var open = _ref2.open;
+              return React.createElement(
+                'button',
+                { className: 'button', onClick: open },
+                'Open media library'
+              );
+            }
+          }),
+          React.createElement(TextControl, {
+            label: 'Height',
+            value: attributes.heroHeight,
+            onChange: function onChange(val) {
+              setAttributes({ heroHeight: parseInt(val) });
+            }
+          })
         )
       )
     );
   },
-  save: function save(_ref2) {
-    var className = _ref2.className,
-        attributes = _ref2.attributes;
+  save: function save(_ref3) {
+    var className = _ref3.className,
+        attributes = _ref3.attributes;
     var title = attributes.title,
         subtitle = attributes.subtitle,
+        mediaID = attributes.mediaID,
+        mediaURL = attributes.mediaURL,
+        heroHeight = attributes.heroHeight,
         text = attributes.text;
 
 
+    var blockProps = useBlockProps.save();
+
     return React.createElement(
       'section',
-      { className: className + ' vf-hero | vf-u-fullbleed' },
+      _extends({}, blockProps, { className: className + ' vf-hero | vf-u-fullbleed' }),
       React.createElement(
         'div',
         { className: 'vf-hero__content | vf-box | vf-stack vf-stack--400' },
@@ -192,11 +243,11 @@ var exampleBlockSettings = {
     }
   },
 
-  edit: function edit(_ref3) {
-    var className = _ref3.className,
-        attributes = _ref3.attributes,
-        setAttributes = _ref3.setAttributes,
-        isSelected = _ref3.isSelected;
+  edit: function edit(_ref4) {
+    var className = _ref4.className,
+        attributes = _ref4.attributes,
+        setAttributes = _ref4.setAttributes,
+        isSelected = _ref4.isSelected;
     var title = attributes.title,
         subtitle = attributes.subtitle,
         text = attributes.text;
@@ -296,9 +347,9 @@ var exampleBlockSettings = {
       )
     );
   },
-  save: function save(_ref4) {
-    var className = _ref4.className,
-        attributes = _ref4.attributes;
+  save: function save(_ref5) {
+    var className = _ref5.className,
+        attributes = _ref5.attributes;
     var title = attributes.title,
         subtitle = attributes.subtitle,
         text = attributes.text;
@@ -349,11 +400,11 @@ var dynamicBlockSettings = {
     }
   },
 
-  edit: function edit(_ref5) {
-    var className = _ref5.className,
-        attributes = _ref5.attributes,
-        setAttributes = _ref5.setAttributes,
-        isSelected = _ref5.isSelected;
+  edit: function edit(_ref6) {
+    var className = _ref6.className,
+        attributes = _ref6.attributes,
+        setAttributes = _ref6.setAttributes,
+        isSelected = _ref6.isSelected;
     var title = attributes.title;
 
 
@@ -393,9 +444,9 @@ var dynamicBlockSettings = {
       )
     );
   },
-  save: function save(_ref6) {
-    var className = _ref6.className,
-        attributes = _ref6.attributes;
+  save: function save(_ref7) {
+    var className = _ref7.className,
+        attributes = _ref7.attributes;
     var title = attributes.title;
 
     return React.createElement(

@@ -2,8 +2,8 @@ const { blocks, data, element, components, blockEditor } = wp;
 const { registerBlockType } = blocks;
 const { dispatch, select } = data;
 const { Fragment } = element;
-const { PanelBody, BaseControl, Icon, RangeControl, IconButton, Toolbar, SelectControl } = components;
-const { InnerBlocks, RichText, InspectorControls, PanelColorSettings, MediaUpload, BlockControls } = blockEditor;
+const { PanelBody, BaseControl, Icon, RangeControl, TextControl, IconButton, Toolbar, SelectControl } = components;
+const { InnerBlocks, RichText, InspectorControls, PanelColorSettings, MediaUpload, MediaPlaceholder, BlockControls, useBlockProps  } = blockEditor;
 const __ = Drupal.t;
 
 const undrrHeroSettings = {
@@ -17,18 +17,35 @@ const undrrHeroSettings = {
     subtitle: {
       type: 'string',
     },
+    mediaID: {
+        type: 'number',
+    },
+    mediaURL: {
+        type: 'string',
+        source: 'attribute',
+        selector: 'img',
+        attribute: 'src',
+    },
+    heroHeight: {
+      type: 'integer',
+    },
     text: {
       type: 'string',
     },
   },
 
   edit({ className, attributes, setAttributes, isSelected }) {
-    const { title, subtitle, text } = attributes;
+    const { title, mediaURL, subtitle, text } = attributes;
+
+    const vfBackgroundImage = {
+      "--vf-hero--bg-image": "url('" + mediaURL + "')"
+    };
+    const blockProps = useBlockProps( { style: vfBackgroundImage } );
 
     return (
       <Fragment>
-      <section className={className + ' vf-hero | vf-u-fullbleed'}>
-        <div className="vf-hero__content | vf-box | vf-stack vf-stack--400">
+      <section {...blockProps} className={className + ' vf-hero | vf-u-fullbleed'}>
+        <div className="vf-hero__content | vf-box | vf-stack vf-stack--400" >
             <RichText
               identifier="title"
               tagName="h2"
@@ -72,7 +89,34 @@ const undrrHeroSettings = {
         </section>
         <InspectorControls>
           <PanelBody title={ __('Block Settings') }>
-            <div>{title}</div>
+            {/* <div>{title}</div> */}
+            <h2>Background image</h2>
+            {/* {mediaID ? <img src={MediaURL} /> : <a href="t">test</a> } */}
+            <MediaUpload
+                onSelect= {
+                  (media) => {
+                    setAttributes({
+                      mediaURL: media.url,
+                      mediaID: media.id,
+                    });
+                  }
+                }
+                type="image"
+                // value={mediaID}
+                render={
+                  ({ open }) => (
+                    <button className="button" onClick={open}>
+                      Open media library
+                    </button>
+                  )}
+              />
+              <TextControl
+                  label='Height'
+                  value={ attributes.heroHeight }
+                  onChange={ ( val ) => {
+                      setAttributes( { heroHeight: parseInt( val ) } );
+                  }}
+              />              
           </PanelBody>
         </InspectorControls>
       </Fragment>
@@ -80,11 +124,12 @@ const undrrHeroSettings = {
   },
 
   save({ className, attributes }) {
-    const { title, subtitle, text } = attributes;
+    const { title, subtitle, mediaID, mediaURL, heroHeight, text } = attributes;
 
+    const blockProps = useBlockProps.save();
+    
     return (
-      <section className={className + ' vf-hero | vf-u-fullbleed'}>
-        {/* style="--vf-hero--bg-image: url('https://acxngcvroo.cloudimg.io/v7/https://www.embl.org/files/wp-content/uploads/vf-hero-intense.png')" */}
+      <section {...blockProps} className={className + ' vf-hero | vf-u-fullbleed'}>
         <div className="vf-hero__content | vf-box | vf-stack vf-stack--400">
           {/* <p class="vf-hero__kicker"><a href="JavaScript:Void(0);">VF </a> | Structural Biology</p> */}
           {title && (
