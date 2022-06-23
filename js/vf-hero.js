@@ -32,6 +32,7 @@ var InnerBlocks = blockEditor.InnerBlocks,
     InspectorControls = blockEditor.InspectorControls,
     PanelColorSettings = blockEditor.PanelColorSettings,
     MediaUpload = blockEditor.MediaUpload,
+    MediaBrowser = blockEditor.MediaBrowser,
     MediaPlaceholder = blockEditor.MediaPlaceholder,
     BlockControls = blockEditor.BlockControls,
     useBlockProps = blockEditor.useBlockProps;
@@ -61,8 +62,15 @@ var undrrHeroSettings = {
     heroHeight: {
       type: 'integer'
     },
+    heroPadding: {
+      type: 'integer'
+    },
     text: {
       type: 'string'
+    },
+    allowedTypes: {
+      type: 'array',
+      default: ['image']
     }
   },
 
@@ -70,24 +78,27 @@ var undrrHeroSettings = {
     var className = _ref.className,
         attributes = _ref.attributes,
         setAttributes = _ref.setAttributes,
+        mediaID = _ref.mediaID,
         isSelected = _ref.isSelected;
     var title = attributes.title,
         mediaURL = attributes.mediaURL,
         subtitle = attributes.subtitle,
-        text = attributes.text;
+        text = attributes.text,
+        heroPadding = attributes.heroPadding;
 
 
-    var vfBackgroundImage = {
-      "--vf-hero--bg-image": "url('" + mediaURL + "')"
+    var vfHeroStyles = {
+      "--vf-hero--bg-image": "url('" + mediaURL + "')",
+      "--vf-hero--bg-image-size": "auto 28.5rem"
     };
-    var blockProps = useBlockProps({ style: vfBackgroundImage });
+    var blockProps = useBlockProps({ style: vfHeroStyles });
 
     return React.createElement(
       Fragment,
       null,
       React.createElement(
         'section',
-        _extends({}, blockProps, { className: className + ' vf-hero | vf-u-fullbleed' }),
+        _extends({}, blockProps, { className: className + ' vf-hero vf-hero--' + heroPadding + ' | vf-u-fullbleed' }),
         React.createElement(
           'div',
           { className: 'vf-hero__content | vf-box | vf-stack vf-stack--400' },
@@ -150,22 +161,38 @@ var undrrHeroSettings = {
             'Background image'
           ),
           React.createElement(MediaUpload, {
+            type: 'image',
+            allowedTypes: attributes.allowedTypes,
             onSelect: function onSelect(media) {
               setAttributes({
                 mediaURL: media.url,
                 mediaID: media.id
               });
             },
-            type: 'image',
-
+            value: mediaID,
             render: function render(_ref2) {
               var open = _ref2.open;
               return React.createElement(
-                'button',
-                { className: 'button', onClick: open },
+                IconButton,
+                {
+                  isPrimary: true,
+                  className: 'wp-block-cloudblocks-feature-box__image-button',
+                  label: __('Add/Edit background image'),
+                  icon: 'format-image',
+                  onClick: open
+                },
                 'Open media library'
               );
             }
+          }),
+          React.createElement(SelectControl, {
+            label: 'Hero padding',
+            value: heroPadding,
+            options: [{ label: 'default', value: '0' }, { label: '400', value: '400' }, { label: '800', value: '800' }, { label: '1200', value: '1200' }],
+            onChange: function onChange(val) {
+              setAttributes({ heroPadding: parseInt(val) });
+            },
+            __nextHasNoMarginBottom: true
           }),
           React.createElement(TextControl, {
             label: 'Height',
@@ -186,14 +213,18 @@ var undrrHeroSettings = {
         mediaID = attributes.mediaID,
         mediaURL = attributes.mediaURL,
         heroHeight = attributes.heroHeight,
+        heroPadding = attributes.heroPadding,
         text = attributes.text;
 
 
-    var blockProps = useBlockProps.save();
+    var vfHeroStyles = {
+      "--vf-hero--bg-image": "url('" + mediaURL + "')",
+      "--vf-hero--bg-image-size": "auto 28.5rem"
+    };
 
     return React.createElement(
       'section',
-      _extends({}, blockProps, { className: className + ' vf-hero | vf-u-fullbleed' }),
+      { style: vfHeroStyles, className: className + ' vf-hero vf-hero--' + heroPadding + ' | vf-u-fullbleed' },
       React.createElement(
         'div',
         { className: 'vf-hero__content | vf-box | vf-stack vf-stack--400' },
@@ -222,7 +253,13 @@ var undrrHeroSettings = {
             React.createElement('path', { d: 'M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0C5.376.008.008 5.376 0 12zm13.707-5.209l4.5 4.5a1 1 0 010 1.414l-4.5 4.5a1 1 0 01-1.414-1.414l2.366-2.367a.25.25 0 00-.177-.424H6a1 1 0 010-2h8.482a.25.25 0 00.177-.427l-2.366-2.368a1 1 0 011.414-1.414z', fill: '', 'fill-rule': 'nonzero' })
           )
         )
-      )
+      ),
+      React.createElement('img', {
+        className: 'hide',
+        src: mediaURL,
+        alt: '',
+        'aria-hidden': 'true'
+      })
     );
   }
 };
