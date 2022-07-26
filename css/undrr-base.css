@@ -1,0 +1,624 @@
+/**
+ * Don't edit this file. Find all style at ./sass folder.
+ **/
+/* The base css for undrr corp site (Grid, H1, reset, fonts, etc)  */
+*,
+::after,
+::before {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+.btn {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857;
+  margin-bottom: 0;
+  padding: 6px 12px;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.btn .label {
+  position: relative;
+  top: -1px;
+}
+
+.btn:focus,
+.btn:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.btn-default {
+  background: #fff;
+  border-color: #ccc;
+  color: #333;
+}
+
+.btn-default:active {
+  background: #e6e6e6;
+  border-color: #adadad;
+  color: #333;
+}
+
+.btn-default:active.focus,
+.btn-default:active:focus,
+.btn-default:active:hover {
+  background: #d4d4d4;
+  border-color: #8c8c8c;
+  color: #333;
+}
+
+.btn-default:focus {
+  background: #e6e6e6;
+  border-color: #8c8c8c;
+  color: #333;
+}
+
+.btn-default:hover {
+  background: #e6e6e6;
+  border-color: #adadad;
+  color: #333;
+}
+
+.btn-default[disabled]:focus,
+.btn-default[disabled]:hover {
+  background: #fff;
+  border-color: #ccc;
+}
+
+.btn-primary {
+  background: #004f91;
+  border-color: #004f91;
+  color: #fff;
+}
+
+.btn-primary:active {
+  background: #00335e;
+  border-color: #002e54;
+  color: #fff;
+}
+
+.btn-primary:active.focus,
+.btn-primary:active:focus,
+.btn-primary:active:hover {
+  background: #00203a;
+  border-color: #000a12;
+  color: #fff;
+}
+
+.btn-primary:focus {
+  background: #00335e;
+  border-color: #000a12;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #00335e;
+  border-color: #002e54;
+  color: #fff;
+}
+
+.btn-primary[disabled]:focus,
+.btn-primary[disabled]:hover {
+  background: #004f91;
+  border-color: #004f91;
+}
+
+.btn:active {
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  outline: 0;
+}
+
+.btn[disabled] {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.carousel {
+  position: relative;
+}
+
+.centered-text {
+  clear: both;
+  margin: 10px auto;
+  max-width: 1200px;
+}
+
+.centered-text:after,
+.centered-text:before {
+  content: "";
+  display: table;
+}
+
+.col-md-1,
+.col-md-10,
+.col-md-11,
+.col-md-12,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9 {
+  min-height: 1px;
+  padding-left: 12px;
+  padding-right: 12px;
+  position: relative;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.container:after,
+.centered-text:after {
+  clear: both;
+}
+
+.container:after,
+.container:before {
+  content: " ";
+  display: table;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: inherit;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.h1,
+.h2,
+.h3,
+h1,
+h2,
+h3 {
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.h1,
+h1 {
+  font-size: 39px;
+}
+
+.h2,
+h2 {
+  font-size: 35px;
+}
+
+.h3,
+h3 {
+  font-size: 30px;
+}
+
+.h4,
+.h5,
+.h6,
+h4,
+h5,
+h6 {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.h4,
+h4 {
+  font-size: 18px;
+}
+
+.h5,
+h5 {
+  font-size: 14px;
+}
+
+.h6,
+h6 {
+  font-size: 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.img-responsive {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.label {
+  border-radius: 0.25em;
+  color: #333;
+  display: inline;
+  font-family: "Roboto Condensed";
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 16px;
+  padding: 0.2em 0.6em 0.3em;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.label-default {
+  background: #777;
+}
+
+.label-default[href]:focus,
+.label-default[href]:hover {
+  background: #5e5e5e;
+}
+
+.label-primary {
+  background: #004f91;
+}
+
+.label-primary[href]:focus,
+.label-primary[href]:hover {
+  background: #00335e;
+}
+
+.label:empty,
+[hidden] {
+  display: none;
+}
+
+.main-container {
+  min-height: calc(100vh-435px);
+}
+
+.media {
+  margin-top: 15px;
+}
+
+.media,
+.media-body {
+  overflow: hidden;
+  zoom: 1;
+}
+
+.media-body {
+  width: 10000px;
+}
+
+.media-body,
+.media-left {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.media-left {
+  padding-right: 10px;
+}
+
+.media:first-child {
+  margin-top: 0;
+}
+
+.paracomponent.full-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.section-wrapper-centered {
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-primary {
+  color: #004f91;
+}
+
+[role="button"] {
+  cursor: pointer;
+}
+
+a {
+  color: #106cb8;
+  text-decoration: none;
+}
+
+a.label:focus,
+a.label:hover {
+  color: #333;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a.text-primary:focus,
+a.text-primary:hover {
+  color: #00335e;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+a:focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+  outline: 5px auto 0;
+  outline-offset: -2px;
+}
+
+a:focus,
+a:hover {
+  color: #0a4372;
+  text-decoration: underline;
+}
+
+article,
+main,
+section,
+.paracomponent {
+  display: block;
+}
+
+b {
+  font-weight: 700;
+}
+
+body {
+  background: #fff;
+  color: #333;
+  font-family: "Roboto light";
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Roboto;
+}
+
+h1 {
+  font-size: 3.65rem;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 40px;
+  margin: 0;
+  text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 900;
+}
+
+h2 {
+  font-size: 2.6rem;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 32px;
+  margin: 0;
+  text-align: left;
+}
+
+h3 {
+  font-size: 2rem;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 24px;
+  margin: 0;
+  text-align: left;
+}
+
+h4 {
+  font-size: 1.6rem;
+  line-height: 24px;
+  margin: 0;
+}
+
+h5 {
+  font-size: 1.4rem;
+  line-height: 16px;
+  margin: 0;
+}
+
+h6 {
+  font-size: 1.1rem;
+  line-height: 13px;
+  margin: 0;
+}
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  font-family: sans-serif;
+  font-size: 62.5%;
+}
+
+img {
+  border: 0;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+label {
+  display: inline-block;
+  font-family: "Roboto Condensed";
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 16px;
+  margin-bottom: 5px;
+  max-width: 100%;
+  text-transform: uppercase;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+@media (min-width: 768px) {
+  .container,
+  .section-wrapper-centered {
+    width: 744px;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-md-1 {
+    width: 8.33333%;
+  }
+  .col-md-1,
+  .col-md-10,
+  .col-md-11,
+  .col-md-12,
+  .col-md-2,
+  .col-md-3,
+  .col-md-4,
+  .col-md-5,
+  .col-md-6,
+  .col-md-7,
+  .col-md-8,
+  .col-md-9 {
+    float: left;
+  }
+  .col-md-10 {
+    width: 83.33333%;
+  }
+  .col-md-11 {
+    width: 91.66667%;
+  }
+  .col-md-12 {
+    width: 100%;
+  }
+  .col-md-2 {
+    width: 16.66667%;
+  }
+  .col-md-3 {
+    width: 25%;
+  }
+  .col-md-4 {
+    width: 33.33333%;
+  }
+  .col-md-5 {
+    width: 41.66667%;
+  }
+  .col-md-6 {
+    width: 50%;
+  }
+  .col-md-7 {
+    width: 58.33333%;
+  }
+  .col-md-8 {
+    width: 66.66667%;
+  }
+  .col-md-9 {
+    width: 75%;
+  }
+  .container,
+  .section-wrapper-centered {
+    width: 964px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container,
+  .section-wrapper-centered {
+    width: 1164px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .hidden-md {
+    display: none !important;
+  }
+}
+
+@media (only: screen) and (max-width: 768px) {
+  body {
+    font-size: 1.4rem;
+    line-height: 20px;
+  }
+  h1 {
+    font-size: 2.8rem;
+    line-height: 32px;
+  }
+  h2 {
+    font-size: 2rem;
+    line-height: 24px;
+  }
+  h3 {
+    font-size: 1.8rem;
+  }
+  h4 {
+    font-size: 1.4rem;
+    line-height: 16px;
+  }
+  h5 {
+    font-size: 1.3rem;
+  }
+  h6 {
+    font-size: 1rem;
+  }
+}
+
+/*# sourceMappingURL=undrr-base.css.map */
