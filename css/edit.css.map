@@ -3,7 +3,7 @@
 	"file": "edit.css",
 	"sources": [
 		"sass/edit.scss",
-		"common/_vf-custom-props.scss",
+		"common/_undrr-custom-props.scss",
 		"common/undrr-grid.scss",
 		"common/vf-card.scss",
 		"common/vf-hero.scss"

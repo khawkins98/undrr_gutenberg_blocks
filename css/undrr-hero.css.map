@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "undrr-hero.css",
+	"sources": [
+		"common/undrr-hero.scss"
+	],
+	"names": [],
+	"mappings": ""
+}
