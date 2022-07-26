@@ -508,26 +508,6 @@ b {
   font-weight: 700;
 }
 
-body {
-  background: #fff;
-  color: #333;
-  font-family: "Roboto light";
-  font-size: 1.6rem;
-  font-weight: 400;
-  line-height: 24px;
-  margin: 0;
-}
-
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Roboto;
-}
-
 h1 {
   font-size: 3.65rem;
   font-stretch: normal;
@@ -586,14 +566,6 @@ h6 {
   font-size: 1.1rem;
   line-height: 13px;
   margin: 0;
-}
-
-html {
-  -ms-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-text-size-adjust: 100%;
-  font-family: sans-serif;
-  font-size: 62.5%;
 }
 
 img {
