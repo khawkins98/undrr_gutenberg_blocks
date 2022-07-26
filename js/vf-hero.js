@@ -62,8 +62,8 @@ var undrrHeroSettings = {
     heroHeight: {
       type: 'integer'
     },
-    heroPadding: {
-      type: 'integer'
+    heroVariant: {
+      type: 'string'
     },
     text: {
       type: 'string'
@@ -84,27 +84,31 @@ var undrrHeroSettings = {
         mediaURL = attributes.mediaURL,
         subtitle = attributes.subtitle,
         text = attributes.text,
-        heroPadding = attributes.heroPadding;
+        heroVariant = attributes.heroVariant,
+        heroHeight = attributes.heroHeight;
 
 
     var undrrHeroStyles = {
-      "background-image": "url('" + mediaURL + "')",
-      "background-size": "auto 28.5rem"
+      "background-image": "url('" + mediaURL + "')"
     };
     var blockProps = useBlockProps({ style: undrrHeroStyles });
+
+    var undrrHeroDescriptionStyles = {
+      "min-height": heroHeight + "px"
+    };
 
     return React.createElement(
       Fragment,
       null,
       React.createElement(
         'section',
-        _extends({}, blockProps, { className: className + ' undrr-hero vxxxxf-hero--' + heroPadding }),
+        _extends({}, blockProps, { className: className + ' undrr-hero undrr-hero--' + heroVariant }),
         React.createElement(
           'div',
           { className: 'container | undrr-hero--inner' },
           React.createElement(
             'div',
-            { 'class': 'undrr-hero--description left' },
+            { style: undrrHeroDescriptionStyles, 'class': 'undrr-hero--description left' },
             React.createElement(RichText, {
               identifier: 'title',
               tagName: 'h2',
@@ -149,7 +153,12 @@ var undrrHeroSettings = {
                   text: nextText
                 });
               }
-            })
+            }),
+            React.createElement(
+              'div',
+              { className: 'dynamic-block-content' },
+              React.createElement(InnerBlocks, null)
+            )
           )
         )
       ),
@@ -191,15 +200,16 @@ var undrrHeroSettings = {
           }),
           React.createElement(SelectControl, {
             label: 'Hero padding',
-            value: heroPadding,
-            options: [{ label: 'default', value: '0' }, { label: '400', value: '400' }, { label: '800', value: '800' }, { label: '1200', value: '1200' }],
+            value: heroVariant,
+            options: [{ label: 'Default (blue)', value: 'default' }, { label: 'White', value: 'white' }, { label: 'Red', value: 'red' }, { label: 'Orange', value: 'orange' }],
             onChange: function onChange(val) {
-              setAttributes({ heroPadding: parseInt(val) });
+              setAttributes({ heroVariant: val });
             },
             __nextHasNoMarginBottom: true
           }),
           React.createElement(TextControl, {
             label: 'Height',
+            help: 'In pixels. Enter a number only.',
             value: attributes.heroHeight,
             onChange: function onChange(val) {
               setAttributes({ heroHeight: parseInt(val) });
@@ -217,24 +227,27 @@ var undrrHeroSettings = {
         mediaID = attributes.mediaID,
         mediaURL = attributes.mediaURL,
         heroHeight = attributes.heroHeight,
-        heroPadding = attributes.heroPadding,
+        heroVariant = attributes.heroVariant,
         text = attributes.text;
 
 
     var undrrHeroStyles = {
-      "background-image": "url('" + mediaURL + "')",
-      "background-size": "auto 28.5rem"
+      "background-image": "url('" + mediaURL + "')"
+    };
+
+    var undrrHeroDescriptionStyles = {
+      "min-height": heroHeight + "px"
     };
 
     return React.createElement(
       'section',
-      { style: undrrHeroStyles, className: className + ' undrr-hero xxxx-hero--' + heroPadding },
+      { style: undrrHeroStyles, className: className + ' undrr-hero undrr-hero--' + heroVariant },
       React.createElement(
         'div',
         { className: 'container | undrr-hero--inner' },
         React.createElement(
           'div',
-          { 'class': 'undrr-hero--description left' },
+          { style: undrrHeroDescriptionStyles, 'class': 'undrr-hero--description left' },
           title && React.createElement(
             'h2',
             { 'class': 'undrr-hero__heading' },
@@ -245,7 +258,8 @@ var undrrHeroSettings = {
             { 'class': 'undrr-hero__subheading' },
             subtitle
           ),
-          text && { text: text }
+          text && { text: text },
+          React.createElement(InnerBlocks.Content, null)
         )
       ),
       React.createElement('img', {

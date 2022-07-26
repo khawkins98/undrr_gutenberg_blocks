@@ -187,74 +187,6 @@
   height: 100%;
 }
 
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: inherit;
-  font-family: inherit;
-  font-weight: 500;
-  line-height: 1.1;
-}
-
-.h1,
-.h2,
-.h3,
-h1,
-h2,
-h3 {
-  margin-bottom: 10px;
-  margin-top: 20px;
-}
-
-.h1,
-h1 {
-  font-size: 39px;
-}
-
-.h2,
-h2 {
-  font-size: 35px;
-}
-
-.h3,
-h3 {
-  font-size: 30px;
-}
-
-.h4,
-.h5,
-.h6,
-h4,
-h5,
-h6 {
-  margin-bottom: 10px;
-  margin-top: 10px;
-}
-
-.h4,
-h4 {
-  font-size: 18px;
-}
-
-.h5,
-h5 {
-  font-size: 14px;
-}
-
-.h6,
-h6 {
-  font-size: 12px;
-}
-
 .hidden {
   display: none !important;
 }
@@ -406,66 +338,6 @@ b {
   font-weight: 700;
 }
 
-h1 {
-  font-size: 3.65rem;
-  font-stretch: normal;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: normal;
-  line-height: 40px;
-  margin: 0;
-  text-align: left;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 900;
-}
-
-h2 {
-  font-size: 2.6rem;
-  font-stretch: normal;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: normal;
-  line-height: 32px;
-  margin: 0;
-  text-align: left;
-}
-
-h3 {
-  font-size: 2rem;
-  font-stretch: normal;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: normal;
-  line-height: 24px;
-  margin: 0;
-  text-align: left;
-}
-
-h4 {
-  font-size: 1.6rem;
-  line-height: 24px;
-  margin: 0;
-}
-
-h5 {
-  font-size: 1.4rem;
-  line-height: 16px;
-  margin: 0;
-}
-
-h6 {
-  font-size: 1.1rem;
-  line-height: 13px;
-  margin: 0;
-}
-
 img {
   border: 0;
   height: auto;
@@ -482,10 +354,6 @@ label {
   margin-bottom: 5px;
   max-width: 100%;
   text-transform: uppercase;
-}
-
-p {
-  margin: 0 0 10px;
 }
 
 @media (min-width: 768px) {
@@ -562,34 +430,6 @@ p {
 @media (min-width: 992px) and (max-width: 1199px) {
   .hidden-md {
     display: none !important;
-  }
-}
-
-@media (only: screen) and (max-width: 768px) {
-  body {
-    font-size: 1.4rem;
-    line-height: 20px;
-  }
-  h1 {
-    font-size: 2.8rem;
-    line-height: 32px;
-  }
-  h2 {
-    font-size: 2rem;
-    line-height: 24px;
-  }
-  h3 {
-    font-size: 1.8rem;
-  }
-  h4 {
-    font-size: 1.4rem;
-    line-height: 16px;
-  }
-  h5 {
-    font-size: 1.3rem;
-  }
-  h6 {
-    font-size: 1rem;
   }
 }
 

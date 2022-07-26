@@ -1,39 +1,58 @@
 .undrr-hero {
-    overflow: hidden;
-    background-position: 50% 50%;
-    background-size: cover;
-  }
-  
-  .undrr-hero--inner {
-    display: grid;
-    height: 100%;
-  }
-  
+  overflow: hidden;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.undrr-hero--inner {
+  display: grid;
+  height: 100%;
+}
+
+.undrr-hero--description {
+  padding: 20px 30px;
+  height: 100%;
+  display: grid;
+}
+.undrr-hero .left {
+  /* left: 0; */
+  align-self: left;
+  justify-self: left;
+}
+.undrr-hero .right {
+  /* left: 0; */
+  align-self: right;
+  justify-self: right;
+}
+@media (min-width: 768px) {
   .undrr-hero--description {
-    background-color: rgba(0,79,145,0.7); /* defualt */
-    padding: 20px 30px;
-    color: #fff;
-    height: 100%;
-    display: grid;
+    width: 50%;
   }
-  .undrr-hero .left {
-    /* left: 0; */
-    align-self: left;
-    justify-self: left;
+}
+@media (min-width: 992px) {
+  .undrr-hero--description {
+    width: 33.33%;
   }
-  .undrr-hero .right {
-    /* left: 0; */
-    align-self: right;
-    justify-self: right;
-  }
-  @media (min-width: 768px) {
-    .undrr-hero--description {
-      width: 50%;
-    }
-  }
-  @media (min-width: 992px) {
-    .undrr-hero--description {
-      width: 33.33%;
-    }
-  }
+}
+
+// variants
+// these need to be tokenised, but we're still prototyping
+.undrr-hero--default .undrr-hero--description {
+  background-color: rgba(0,79,145,0.7); 
+  color: #fff;
+}
   
+.undrr-hero--white .undrr-hero--description {
+  background-color: rgba(255,255,255,0.7); 
+  color: #333;
+}
+
+.undrr-hero--red .undrr-hero--description {
+  background-color: rgba(193, 9, 45, 0.7); 
+  color: #fff;
+}
+
+.undrr-hero--orange .undrr-hero--description {
+  background-color: rgba(234, 117, 42 ,0.7); 
+  color: #fff;
+}

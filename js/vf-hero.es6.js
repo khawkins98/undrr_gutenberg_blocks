@@ -29,8 +29,8 @@ const undrrHeroSettings = {
     heroHeight: {
       type: 'integer',
     },
-    heroPadding: {
-      type: 'integer'
+    heroVariant: {
+      type: 'string'
     },
     text: {
       type: 'string',
@@ -42,23 +42,27 @@ const undrrHeroSettings = {
 },
 
   edit({ className, attributes, setAttributes, mediaID, isSelected }) {
-    const { title, mediaURL, subtitle, text, heroPadding } = attributes;
+    const { title, mediaURL, subtitle, text, heroVariant, heroHeight } = attributes;
 
     // let mediaID = mediaID || "tocome";
     // mediaURL = mediaURL || "tocome";
     // console.log('mediaURL',mediaURL)
 
     const undrrHeroStyles = {
-      "background-image": "url('" + mediaURL + "')",
-      "background-size": "auto 28.5rem"
+      "background-image": "url('" + mediaURL + "')"
+      // "background-size": "auto 28.5rem"
     };
     const blockProps = useBlockProps( { style: undrrHeroStyles } );
+
+    const undrrHeroDescriptionStyles = {
+      "min-height": heroHeight + "px"
+    }
     // style="any-custom-background-colour-desired min-height: 300px;"
     return (
       <Fragment>
-        <section {...blockProps} className={className + ' undrr-hero vxxxxf-hero--' + heroPadding}>
+        <section {...blockProps} className={className + ' undrr-hero undrr-hero--' + heroVariant}>
           <div className="container | undrr-hero--inner" >
-            <div class="undrr-hero--description left">
+            <div style={undrrHeroDescriptionStyles} class="undrr-hero--description left">
               <RichText
                 identifier="title"
                 tagName="h2"
@@ -98,6 +102,9 @@ const undrrHeroSettings = {
                   });
                 }}
               />
+              <div className="dynamic-block-content">
+                <InnerBlocks />
+              </div>
             </div>
           </div>
         </section>
@@ -153,25 +160,26 @@ const undrrHeroSettings = {
 
             <SelectControl
                 label="Hero padding"
-                value={ heroPadding }
+                value={ heroVariant }
                 options={ [
-                    { label: 'default', value: '0' },
-                    { label: '400', value: '400' },
-                    { label: '800', value: '800' },
-                    { label: '1200', value: '1200' },
+                    { label: 'Default (blue)', value: 'default' },
+                    { label: 'White', value: 'white' },
+                    { label: 'Red', value: 'red' },
+                    { label: 'Orange', value: 'orange' },
                 ] }
                 onChange={ ( val ) => {
-                  setAttributes( { heroPadding: parseInt( val ) } );
+                  setAttributes( { heroVariant: val } );
                 }}
                 __nextHasNoMarginBottom
             />
             <TextControl
                 label='Height'
+                help='In pixels. Enter a number only.'
                 value={ attributes.heroHeight }
                 onChange={ ( val ) => {
                     setAttributes( { heroHeight: parseInt( val ) } );
                 }}
-            />              
+            />
           </PanelBody>
         </InspectorControls>
       </Fragment>
@@ -179,17 +187,21 @@ const undrrHeroSettings = {
   },
 
   save({ className, attributes }) {
-    const { title, subtitle, mediaID, mediaURL, heroHeight, heroPadding, text } = attributes;
+    const { title, subtitle, mediaID, mediaURL, heroHeight, heroVariant, text } = attributes;
 
     const undrrHeroStyles = {
-      "background-image": "url('" + mediaURL + "')",
-      "background-size": "auto 28.5rem"
+      "background-image": "url('" + mediaURL + "')"
+      // "background-size": "auto 28.5rem"
     };
+
+    const undrrHeroDescriptionStyles = {
+      "min-height": heroHeight + "px"
+    }
     
     return (
-      <section style={undrrHeroStyles} className={className + ' undrr-hero xxxx-hero--' + heroPadding}>
+      <section style={undrrHeroStyles} className={className + ' undrr-hero undrr-hero--' + heroVariant}>
         <div className="container | undrr-hero--inner">
-          <div class="undrr-hero--description left">
+          <div style={undrrHeroDescriptionStyles} class="undrr-hero--description left">
             {title && (
               <h2 class="undrr-hero__heading">{title}</h2>
             )}
@@ -199,6 +211,7 @@ const undrrHeroSettings = {
             {text && (
               {text}
             )}
+            <InnerBlocks.Content />
           </div>
         </div>
         {/* This is requird to get the media to save? nb. I'm bad at react. */}
