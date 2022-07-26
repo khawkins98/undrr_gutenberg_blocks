@@ -87,66 +87,70 @@ var undrrHeroSettings = {
         heroPadding = attributes.heroPadding;
 
 
-    var vfHeroStyles = {
-      "--vf-hero--bg-image": "url('" + mediaURL + "')",
-      "--vf-hero--bg-image-size": "auto 28.5rem"
+    var undrrHeroStyles = {
+      "background-image": "url('" + mediaURL + "')",
+      "background-size": "auto 28.5rem"
     };
-    var blockProps = useBlockProps({ style: vfHeroStyles });
+    var blockProps = useBlockProps({ style: undrrHeroStyles });
 
     return React.createElement(
       Fragment,
       null,
       React.createElement(
         'section',
-        _extends({}, blockProps, { className: className + ' vf-hero vf-hero--' + heroPadding + ' | vf-u-fullbleed' }),
+        _extends({}, blockProps, { className: className + ' undrr-hero vxxxxf-hero--' + heroPadding }),
         React.createElement(
           'div',
-          { className: 'vf-hero__content | vf-box | vf-stack vf-stack--400' },
-          React.createElement(RichText, {
-            identifier: 'title',
-            tagName: 'h2',
-            value: title,
-            placeholder: __('Title'),
-            onChange: function onChange(nextTitle) {
-              setAttributes({
-                title: nextTitle
-              });
-            },
-            onSplit: function onSplit() {
-              return null;
-            },
-            unstableOnSplit: function unstableOnSplit() {
-              return null;
-            }
-          }),
-          React.createElement(RichText, {
-            identifier: 'subtitle',
-            tagName: 'div',
-            value: subtitle,
-            placeholder: __('Subtitle goes here'),
-            onChange: function onChange(nextSubtitle) {
-              setAttributes({
-                subtitle: nextSubtitle
-              });
-            },
-            onSplit: function onSplit() {
-              return null;
-            },
-            unstableOnSplit: function unstableOnSplit() {
-              return null;
-            }
-          }),
-          React.createElement(RichText, {
-            identifier: 'text',
-            tagName: 'p',
-            value: text,
-            placeholder: __('Text'),
-            onChange: function onChange(nextText) {
-              setAttributes({
-                text: nextText
-              });
-            }
-          })
+          { className: 'container | undrr-hero--inner' },
+          React.createElement(
+            'div',
+            { 'class': 'undrr-hero--description left' },
+            React.createElement(RichText, {
+              identifier: 'title',
+              tagName: 'h2',
+              value: title,
+              placeholder: __('Title'),
+              onChange: function onChange(nextTitle) {
+                setAttributes({
+                  title: nextTitle
+                });
+              },
+              onSplit: function onSplit() {
+                return null;
+              },
+              unstableOnSplit: function unstableOnSplit() {
+                return null;
+              }
+            }),
+            React.createElement(RichText, {
+              identifier: 'subtitle',
+              tagName: 'div',
+              value: subtitle,
+              placeholder: __('Subtitle goes here'),
+              onChange: function onChange(nextSubtitle) {
+                setAttributes({
+                  subtitle: nextSubtitle
+                });
+              },
+              onSplit: function onSplit() {
+                return null;
+              },
+              unstableOnSplit: function unstableOnSplit() {
+                return null;
+              }
+            }),
+            React.createElement(RichText, {
+              identifier: 'text',
+              tagName: 'p',
+              value: text,
+              placeholder: __('Text'),
+              onChange: function onChange(nextText) {
+                setAttributes({
+                  text: nextText
+                });
+              }
+            })
+          )
         )
       ),
       React.createElement(
@@ -217,41 +221,31 @@ var undrrHeroSettings = {
         text = attributes.text;
 
 
-    var vfHeroStyles = {
-      "--vf-hero--bg-image": "url('" + mediaURL + "')",
-      "--vf-hero--bg-image-size": "auto 28.5rem"
+    var undrrHeroStyles = {
+      "background-image": "url('" + mediaURL + "')",
+      "background-size": "auto 28.5rem"
     };
 
     return React.createElement(
       'section',
-      { style: vfHeroStyles, className: className + ' vf-hero vf-hero--' + heroPadding + ' | vf-u-fullbleed' },
+      { style: undrrHeroStyles, className: className + ' undrr-hero xxxx-hero--' + heroPadding },
       React.createElement(
         'div',
-        { className: 'vf-hero__content | vf-box | vf-stack vf-stack--400' },
-        title && React.createElement(
-          'h2',
-          { 'class': 'vf-hero__heading' },
-          title
-        ),
-        subtitle && React.createElement(
-          'p',
-          { 'class': 'vf-hero__subheading' },
-          subtitle
-        ),
-        text && React.createElement(
-          'p',
-          { 'class': 'vf-hero__text' },
-          text
-        ),
+        { className: 'container | undrr-hero--inner' },
         React.createElement(
-          'a',
-          { 'class': 'vf-hero__link', href: 'JavaScript:Void(0);' },
-          'Learn more',
-          React.createElement(
-            'svg',
-            { width: '24', height: '24', xmlns: 'http://www.w3.org/2000/svg' },
-            React.createElement('path', { d: 'M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0C5.376.008.008 5.376 0 12zm13.707-5.209l4.5 4.5a1 1 0 010 1.414l-4.5 4.5a1 1 0 01-1.414-1.414l2.366-2.367a.25.25 0 00-.177-.424H6a1 1 0 010-2h8.482a.25.25 0 00.177-.427l-2.366-2.368a1 1 0 011.414-1.414z', fill: '', 'fill-rule': 'nonzero' })
-          )
+          'div',
+          { 'class': 'undrr-hero--description left' },
+          title && React.createElement(
+            'h2',
+            { 'class': 'undrr-hero__heading' },
+            title
+          ),
+          subtitle && React.createElement(
+            'p',
+            { 'class': 'undrr-hero__subheading' },
+            subtitle
+          ),
+          text && { text: text }
         )
       ),
       React.createElement('img', {
