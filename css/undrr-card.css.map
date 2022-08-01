@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "undrr-card.css",
+	"sources": [
+		"common/undrr-card.scss"
+	],
+	"names": [],
+	"mappings": "AACA,AAAA,gCAAgC,CAAC,aAAa,CAAC;EAC3C,OAAO,EAAE,IAAI;EACb,GAAG,EAAE,MAAM;EACX,cAAc,EAAE,MAAM;CACvB;;AAED,AAAA,gCAAgC,CAAC,aAAa,GAAG,UAAU,CAAC;EAC1D,OAAO,EAAE,YAAY;CACtB;;AAGD,AAAA,gCAAgC,CAAC,gBAAgB,CAAC;EAChD,YAAY,EAAE,CAAC;EACf,aAAa,EAAE,CAAC;CACjB"
+}

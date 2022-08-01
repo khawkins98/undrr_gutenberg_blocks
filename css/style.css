@@ -593,6 +593,38 @@ html:not(.vf-disable-deprecated) .vf-card-theme--quaternary {
   color: #fff;
 }
 
+.view-compontent-highlight-cards .view-content {
+  display: grid;
+  gap: 1.5rem;
+  grid-auto-flow: column;
+}
+
+.view-compontent-highlight-cards .view-content > .views-row {
+  display: inline-block;
+}
+
+.view-compontent-highlight-cards .container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+body .wp-block-button__link {
+  border-radius: 0;
+  background: #1f4b79;
+  border: 1px solid #fff;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #fff;
+}
+
+body .has-light-gray-color {
+  color: #fff;
+}
+
+body .has-dark-blue-background-color {
+  color: #1f4b79;
+}
+
 .wp-block-undrr-example-block {
   display: flex;
   flex-direction: row;

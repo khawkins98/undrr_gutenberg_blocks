@@ -1,0 +1,16 @@
+// Card component auto grid
+.view-compontent-highlight-cards .view-content {
+    display: grid;
+    gap: 1.5rem;
+    grid-auto-flow: column;
+  }
+  
+  .view-compontent-highlight-cards .view-content > .views-row {
+    display: inline-block;
+  }
+  
+  // a quick reset
+  .view-compontent-highlight-cards .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }

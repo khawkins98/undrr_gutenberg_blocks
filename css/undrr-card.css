@@ -1,0 +1,19 @@
+/**
+ * Don't edit this file. Find all style at ./sass folder.
+ **/
+.view-compontent-highlight-cards .view-content {
+  display: grid;
+  gap: 1.5rem;
+  grid-auto-flow: column;
+}
+
+.view-compontent-highlight-cards .view-content > .views-row {
+  display: inline-block;
+}
+
+.view-compontent-highlight-cards .container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/*# sourceMappingURL=undrr-card.css.map */
