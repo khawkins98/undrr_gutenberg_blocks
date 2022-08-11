@@ -47,7 +47,7 @@ var InnerBlocks = blockEditor.InnerBlocks,
 var __ = Drupal.t;
 
 var undrrTabsSettings = {
-  title: __('UNDRR Tabs secttion'),
+  title: __('UNDRR Tabs section'),
   description: __('A tabs section'),
   icon: 'admin-site-alt3',
   parent: ['undrr/undrr-tabs'],

@@ -69,9 +69,9 @@ const undrrHeroSettings = {
                 tagName="h2"
                 value={title}
                 placeholder={__('Title')}
-                onChange={nextTitle => {
+                onChange={val => {
                   setAttributes({
-                    title: nextTitle,
+                    title: val,
                   });
                 }}
                 onSplit={() => null}

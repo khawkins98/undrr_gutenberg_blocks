@@ -8,7 +8,7 @@ const { InnerBlocks, RichText, InspectorControls, PanelColorSettings, BlockContr
 const __ = Drupal.t;
 
 const undrrTabsSettings = {
-  title: __('UNDRR Tabs secttion'),
+  title: __('UNDRR Tabs section'),
   description: __('A tabs section'),
   icon: 'admin-site-alt3',
   parent: ['undrr/undrr-tabs'],

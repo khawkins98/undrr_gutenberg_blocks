@@ -115,9 +115,9 @@ var undrrHeroSettings = {
               tagName: 'h2',
               value: title,
               placeholder: __('Title'),
-              onChange: function onChange(nextTitle) {
+              onChange: function onChange(val) {
                 setAttributes({
-                  title: nextTitle
+                  title: val
                 });
               },
               onSplit: function onSplit() {

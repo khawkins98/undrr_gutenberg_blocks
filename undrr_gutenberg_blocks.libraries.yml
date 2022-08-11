@@ -5,6 +5,7 @@ block-edit:
     js/vf-hero.js: { }
     js/undrr-tabs.js: { }
     js/undrr-tabs-section.js: { }
+    js/undrr-card.js: { }
   css:
     theme:
       css/style.css: { }
