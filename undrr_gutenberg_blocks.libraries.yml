@@ -3,6 +3,8 @@ block-edit:
   js:
     js/index.js: { }
     js/vf-hero.js: { }
+    js/undrr-tabs.js: { }
+    js/undrr-tabs-section.js: { }
   css:
     theme:
       css/style.css: { }
@@ -11,6 +13,8 @@ block-edit:
     - gutenberg/edit-node
 block-view:
   version: VERSION
+  js:
+    js/theme/undrr-tabs.js: { }
   css:
     theme:
       css/style.css: { }

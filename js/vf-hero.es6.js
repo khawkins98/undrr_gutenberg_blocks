@@ -18,13 +18,13 @@ const undrrHeroSettings = {
       type: 'string',
     },
     mediaID: {
-        type: 'number',
+      type: 'number',
     },
     mediaURL: {
-        type: 'string',
-        source: 'attribute',
-        selector: 'img',
-        attribute: 'src',
+      type: 'string',
+      source: 'attribute',
+      selector: 'img',
+      attribute: 'src',
     },
     heroHeight: {
       type: 'integer',

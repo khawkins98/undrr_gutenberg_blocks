@@ -1,0 +1,86 @@
+/**
+ * Don't edit this file. Find all style at ./sass folder.
+ **/
+/* stylelint-enable */
+/*!
+ * Component: @visual-framework/vf-tabs
+ * Version: 2.1.0
+ * Location: components/undefined
+ */
+.vf-tabs__list {
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
+  font-size: 19px;
+  color: #1a1c1a;
+  font-weight: 400;
+  line-height: 1.421;
+  margin: var(--vf-stack-margin, 0) 0 0 0;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 0;
+  position: relative;
+}
+
+.vf-tabs__list::before {
+  border-bottom: 2px solid #000000;
+  bottom: 0;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1984;
+}
+
+.vf-tabs__item {
+  display: inline-block;
+  position: relative;
+}
+
+.vf-tabs__link {
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
+  font-size: 19px;
+  color: #1a1c1a;
+  font-weight: 400;
+  line-height: 1.421;
+  margin: var(--vf-stack-margin, 0) 0 0 0;
+  border-bottom-color: transparent;
+  border-bottom-style: solid;
+  border-bottom-width: 4px;
+  color: #54585a;
+  display: block;
+  outline: 0;
+  padding: 8px 16px;
+  position: relative;
+  text-decoration: none;
+}
+
+.vf-tabs__link:hover, .vf-tabs__link:focus {
+  border-bottom-color: #54585a;
+  color: #000000;
+  z-index: 5150;
+}
+
+.vf-tabs__link.is-active {
+  border-bottom-color: #3b6fb6;
+  color: #3b6fb6;
+  text-shadow: 1px 0 0 currentColor;
+  z-index: 5150;
+}
+
+.vf-tabs__link.is-active:hover, .vf-tabs__link.is-active:focus {
+  color: #3b6fb6;
+}
+
+.vf-tabs__section {
+  padding: 8px 16px;
+}
+
+.vf-tabs__item {
+  -ms-flex-preferred-size: max-content;
+  flex-basis: max-content;
+}
+
+/*# sourceMappingURL=undrr-tabs.css.map */
