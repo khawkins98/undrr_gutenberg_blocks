@@ -63,7 +63,8 @@ var undrrHeroSettings = {
       type: 'integer'
     },
     heroVariant: {
-      type: 'string'
+      type: 'string',
+      default: 'default'
     },
     text: {
       type: 'string'

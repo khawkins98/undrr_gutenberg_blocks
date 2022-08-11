@@ -27,10 +27,11 @@ const undrrHeroSettings = {
       attribute: 'src',
     },
     heroHeight: {
-      type: 'integer',
+      type: 'integer'
     },
     heroVariant: {
-      type: 'string'
+      type: 'string',
+      default: 'default'
     },
     text: {
       type: 'string',
