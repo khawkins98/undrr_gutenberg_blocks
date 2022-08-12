@@ -2,7 +2,7 @@ const { useCallback, useEffect } = React;
 const { blocks, data, element, components, blockEditor } = wp;
 const { registerBlockType, createBlock } = blocks;
 const { dispatch, select, useDispatch, useSelect } = data;
-const { useState, Fragment } = element;
+const { Fragment } = element;
 const { Button, PanelBody, BaseControl, ExternalLink, Icon, TextControl, ToggleControl, IconButton, Toolbar, SelectControl } = components;
 const { RichText, InspectorControls, BlockControls, useBlockProps, MediaUpload, MediaBrowser, MediaPlaceholder } = blockEditor;
 const __ = Drupal.t;
@@ -45,54 +45,24 @@ const undrrCardSettings = {
       type: 'string',
       default: ''
     },
-    unlabelled: {
-      type: 'integer',
-      default: 0
-    },
     allowedTypes: {
       type: 'array',
       default: ['image'],
     },
-    content: {
+    cardBody: {
       type: 'string',
-      source: 'html'
+      source: 'html',
+      selector: 'p',
     }
   },
 
   edit({ attributes, setAttributes, clientId }) {
-    const {updateBlockAttributes} = useDispatch('core/block-editor');
-    let  {id, title, subheading, link, unlabelled, mediaID, mediaURL, content } = attributes;
+    let  {id, title, subheading, link, mediaID, mediaURL, cardBody } = attributes;
+    const blockProps = useBlockProps();
+    // Default to the `clientId` for the ID attribute
     if (id === '') {
       setAttributes({id: clientId});
     }
-
-    // if (ver !== attributes.ver) {
-    //   attributes.setAttributes({ver});
-    // }
-  
-    const {tabOrder, updateTabs} = useSelect(
-      (select) => {
-        const {getBlockOrder, getBlockRootClientId} = select('core/block-editor');
-        const rootClientId = getBlockRootClientId(clientId);
-        const parentBlockOrder = getBlockOrder(rootClientId);
-        return {
-          tabOrder: parentBlockOrder.indexOf(clientId) + 1,
-          updateTabs: () => {
-            updateBlockAttributes(rootClientId, {
-              dirty: Date.now()
-            });
-          }
-        };
-      },
-      [clientId]
-    );
-    
-    // Default to the `clientId` for the ID attribute
-
-    // Flag the parent tabs block as "dirty" if any attributes change
-    useEffect(() => {
-      // updateTabs();
-    }, [id, title, tabOrder]);
 
     // Callback for inspector changes to update attributes
     // Flags the parent tabs block as "dirty"
@@ -109,8 +79,6 @@ const undrrCardSettings = {
       },
       [clientId]
     );
-
-    const [ headingIsHidden, setHeadingIsHidden ] = useState( true );
 
     return (
       <Fragment>
@@ -176,22 +144,6 @@ const undrrCardSettings = {
                     setAttributes( { link:  val } );
                 }}
             />
-          <ToggleControl 
-                identifier='unlabelled'
-                label='Hide heading'
-                // help='to come.'
-                help={
-                  unlabelled
-                      ? 'Heading hidden.'
-                      : 'Heading shown.'
-                }
-                checked={ unlabelled }
-                onChange={ (value) => {
-                  setHeadingIsHidden(( value ) => ! value)
-                  unlabelled = headingIsHidden;
-                  setAttributes( { unlabelled: value } );
-                }}
-            />
 
           <TextControl
                 identifier='id'
@@ -204,9 +156,9 @@ const undrrCardSettings = {
             />
           </PanelBody>
         </InspectorControls>
-        <article className='vf-card vf-card--brand vf-card--bordered'>
+        <article className='vf-card vf-card--brand vf-card--bordered' id={id}>
           <div class="undrr-card__top">
-            {subheading ? <p className="vf-card__subheading">{subheading}</p> : false }
+            {subheading ? <span className="vf-card__subheading">{subheading}</span> : false }
             {mediaID ? <img src={mediaURL} alt={mediaID} className="vf-card__image" loading="lazy" /> : false }
           </div>
           <div className="vf-card__content | vf-stack vf-stack--400">
@@ -215,12 +167,14 @@ const undrrCardSettings = {
             </h3>
             <div className="vf-card__text">
               <RichText
-                  identifier='content'
+                  { ...blockProps }
+                  identifier='cardBody'
+                  tagName='p' 
                   label='Card content'
-                  value={ content }
+                  value={ cardBody }
                   allowedFormats={ [ 'core/bold', 'core/italic', 'core/link' ] } 
-                  onChange={ ( content ) => setAttributes( { content } ) } 
-                  placeholder={ __( 'Content' ) } 
+                  onChange={ ( content ) => setAttributes( { cardBody: content } ) } 
+                  placeholder={ __( 'Content...' ) } 
               />
             </div>
           </div>
@@ -231,29 +185,29 @@ const undrrCardSettings = {
   },
 
   save({ attributes }) {
-    let { id, title, subheading, link, unlabelled, mediaID, mediaURL, content } = attributes;
-
+    let { id, title, subheading, link, mediaID, mediaURL, cardBody } = attributes;
+    const blockProps = useBlockProps.save();
     const attr = {
       className: `vf-card vf-card--brand vf-card--bordered`
     };
     if (id !== '') {
-      attr.id = `vf-tabs__section-${id}`;
-    }
-    const heading = {};
-    if (unlabelled === true) {
-      heading.className = 'vf-u-sr-only';
+      attr.id = `vf-card-${id}`;
     }
     return (
       <article {...attr}>
-        {/* <h2 {...heading}></h2> */}
-        {mediaID ? <img src={mediaURL} alt={mediaID} className="vf-card__image" loading="lazy" /> : false }
-        <div className="vf-card__content | vf-stack vf-stack--400">
         <div class="undrr-card__top">
-            {subheading ? <p className="vf-card__subheading">{subheading}</p> : false }
-            {mediaID ? <img src={mediaURL} alt={mediaID} className="vf-card__image" loading="lazy" /> : false }
-          </div>
+          {subheading ? <span className="vf-card__subheading">{subheading}</span> : false }
+          {mediaID ? <img src={mediaURL} alt={mediaID} className="vf-card__image" loading="lazy" /> : false }
+        </div>
+        <div className="vf-card__content | vf-stack vf-stack--400">
+          <h3 className="vf-card__heading">
+            {link ? <a className="vf-card__link" href={link}>{title}</a> : <Fragment>{title}</Fragment> }
+          </h3>
           <div className="vf-card__text">
-            <RichText.Content value={ content } />
+            <RichText.Content 
+            { ...blockProps } 
+            tagName="p" 
+            value={ cardBody } />
           </div>
         </div>
       </article>

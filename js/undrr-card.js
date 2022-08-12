@@ -7,8 +7,6 @@
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -28,8 +26,7 @@ var dispatch = data.dispatch,
     select = data.select,
     useDispatch = data.useDispatch,
     useSelect = data.useSelect;
-var useState = element.useState,
-    Fragment = element.Fragment;
+var Fragment = element.Fragment;
 var Button = components.Button,
     PanelBody = components.PanelBody,
     BaseControl = components.BaseControl,
@@ -87,17 +84,14 @@ var undrrCardSettings = {
       type: 'string',
       default: ''
     },
-    unlabelled: {
-      type: 'integer',
-      default: 0
-    },
     allowedTypes: {
       type: 'array',
       default: ['image']
     },
-    content: {
+    cardBody: {
       type: 'string',
-      source: 'html'
+      source: 'html',
+      selector: 'p'
     }
   },
 
@@ -105,43 +99,19 @@ var undrrCardSettings = {
     var attributes = _ref.attributes,
         setAttributes = _ref.setAttributes,
         clientId = _ref.clientId;
-
-    var _useDispatch = useDispatch('core/block-editor'),
-        updateBlockAttributes = _useDispatch.updateBlockAttributes;
-
     var id = attributes.id,
         title = attributes.title,
         subheading = attributes.subheading,
         link = attributes.link,
-        unlabelled = attributes.unlabelled,
         mediaID = attributes.mediaID,
         mediaURL = attributes.mediaURL,
-        content = attributes.content;
+        cardBody = attributes.cardBody;
+
+    var blockProps = useBlockProps();
 
     if (id === '') {
       setAttributes({ id: clientId });
     }
-
-    var _useSelect = useSelect(function (select) {
-      var _select = select('core/block-editor'),
-          getBlockOrder = _select.getBlockOrder,
-          getBlockRootClientId = _select.getBlockRootClientId;
-
-      var rootClientId = getBlockRootClientId(clientId);
-      var parentBlockOrder = getBlockOrder(rootClientId);
-      return {
-        tabOrder: parentBlockOrder.indexOf(clientId) + 1,
-        updateTabs: function updateTabs() {
-          updateBlockAttributes(rootClientId, {
-            dirty: Date.now()
-          });
-        }
-      };
-    }, [clientId]),
-        tabOrder = _useSelect.tabOrder,
-        updateTabs = _useSelect.updateTabs;
-
-    useEffect(function () {}, [id, title, tabOrder]);
 
     var onChange = useCallback(function (name, value) {
       if (name === 'id') {
@@ -149,11 +119,6 @@ var undrrCardSettings = {
       }
       setAttributes(_defineProperty({}, name, value));
     }, [clientId]);
-
-    var _useState = useState(true),
-        _useState2 = _slicedToArray(_useState, 2),
-        headingIsHidden = _useState2[0],
-        setHeadingIsHidden = _useState2[1];
 
     return React.createElement(
       Fragment,
@@ -226,20 +191,6 @@ var undrrCardSettings = {
               setAttributes({ link: val });
             }
           }),
-          React.createElement(ToggleControl, {
-            identifier: 'unlabelled',
-            label: 'Hide heading',
-
-            help: unlabelled ? 'Heading hidden.' : 'Heading shown.',
-            checked: unlabelled,
-            onChange: function onChange(value) {
-              setHeadingIsHidden(function (value) {
-                return !value;
-              });
-              unlabelled = headingIsHidden;
-              setAttributes({ unlabelled: value });
-            }
-          }),
           React.createElement(TextControl, {
             identifier: 'id',
             label: 'Anchor ID',
@@ -253,12 +204,12 @@ var undrrCardSettings = {
       ),
       React.createElement(
         'article',
-        { className: 'vf-card vf-card--brand vf-card--bordered' },
+        { className: 'vf-card vf-card--brand vf-card--bordered', id: id },
         React.createElement(
           'div',
           { 'class': 'undrr-card__top' },
           subheading ? React.createElement(
-            'p',
+            'span',
             { className: 'vf-card__subheading' },
             subheading
           ) : false,
@@ -283,16 +234,17 @@ var undrrCardSettings = {
           React.createElement(
             'div',
             { className: 'vf-card__text' },
-            React.createElement(RichText, {
-              identifier: 'content',
+            React.createElement(RichText, _extends({}, blockProps, {
+              identifier: 'cardBody',
+              tagName: 'p',
               label: 'Card content',
-              value: content,
+              value: cardBody,
               allowedFormats: ['core/bold', 'core/italic', 'core/link'],
               onChange: function onChange(content) {
-                return setAttributes({ content: content });
+                return setAttributes({ cardBody: content });
               },
-              placeholder: __('Content')
-            })
+              placeholder: __('Content...')
+            }))
           )
         )
       )
@@ -304,43 +256,52 @@ var undrrCardSettings = {
         title = attributes.title,
         subheading = attributes.subheading,
         link = attributes.link,
-        unlabelled = attributes.unlabelled,
         mediaID = attributes.mediaID,
         mediaURL = attributes.mediaURL,
-        content = attributes.content;
+        cardBody = attributes.cardBody;
 
-
+    var blockProps = useBlockProps.save();
     var attr = {
       className: 'vf-card vf-card--brand vf-card--bordered'
     };
     if (id !== '') {
-      attr.id = 'vf-tabs__section-' + id;
-    }
-    var heading = {};
-    if (unlabelled === true) {
-      heading.className = 'vf-u-sr-only';
+      attr.id = 'vf-card-' + id;
     }
     return React.createElement(
       'article',
       attr,
-      mediaID ? React.createElement('img', { src: mediaURL, alt: mediaID, className: 'vf-card__image', loading: 'lazy' }) : false,
+      React.createElement(
+        'div',
+        { 'class': 'undrr-card__top' },
+        subheading ? React.createElement(
+          'span',
+          { className: 'vf-card__subheading' },
+          subheading
+        ) : false,
+        mediaID ? React.createElement('img', { src: mediaURL, alt: mediaID, className: 'vf-card__image', loading: 'lazy' }) : false
+      ),
       React.createElement(
         'div',
         { className: 'vf-card__content | vf-stack vf-stack--400' },
         React.createElement(
-          'div',
-          { 'class': 'undrr-card__top' },
-          subheading ? React.createElement(
-            'p',
-            { className: 'vf-card__subheading' },
-            subheading
-          ) : false,
-          mediaID ? React.createElement('img', { src: mediaURL, alt: mediaID, className: 'vf-card__image', loading: 'lazy' }) : false
+          'h3',
+          { className: 'vf-card__heading' },
+          link ? React.createElement(
+            'a',
+            { className: 'vf-card__link', href: link },
+            title
+          ) : React.createElement(
+            Fragment,
+            null,
+            title
+          )
         ),
         React.createElement(
           'div',
           { className: 'vf-card__text' },
-          React.createElement(RichText.Content, { value: content })
+          React.createElement(RichText.Content, _extends({}, blockProps, {
+            tagName: 'p',
+            value: cardBody }))
         )
       )
     );
