@@ -155,7 +155,7 @@ const undrrCardSettings = {
             />
           </PanelBody>
         </InspectorControls>
-        <article className='vf-card vf-card--brand vf-card--bordered' id={id}>
+        <article className='vf-card vf-card--brand' id={id}>
           <div class="undrr-card__top">
             {subheading ? <span className="vf-card__subheading">{subheading}</span> : false }
             {mediaID ? <img src={mediaURL} alt={mediaID} className="vf-card__image" loading="lazy" /> : false }
@@ -187,7 +187,7 @@ const undrrCardSettings = {
     let { id, title, subheading, link, mediaID, mediaURL, cardBody } = attributes;
     const blockProps = useBlockProps.save();
     const attr = {
-      className: `vf-card vf-card--brand vf-card--bordered`
+      className: `vf-card vf-card--brand`
     };
     if (id !== '') {
       attr.id = `vf-card-${id}`;

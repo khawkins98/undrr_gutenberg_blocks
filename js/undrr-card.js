@@ -204,7 +204,7 @@ var undrrCardSettings = {
       ),
       React.createElement(
         'article',
-        { className: 'vf-card vf-card--brand vf-card--bordered', id: id },
+        { className: 'vf-card vf-card--brand', id: id },
         React.createElement(
           'div',
           { 'class': 'undrr-card__top' },
@@ -262,7 +262,7 @@ var undrrCardSettings = {
 
     var blockProps = useBlockProps.save();
     var attr = {
-      className: 'vf-card vf-card--brand vf-card--bordered'
+      className: 'vf-card vf-card--brand'
     };
     if (id !== '') {
       attr.id = 'vf-card-' + id;
