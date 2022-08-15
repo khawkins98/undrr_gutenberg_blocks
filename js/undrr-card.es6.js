@@ -65,7 +65,6 @@ const undrrCardSettings = {
     }
 
     // Callback for inspector changes to update attributes
-    // Flags the parent tabs block as "dirty"
     const onChange = useCallback(
       (name, value) => {
         if (name === 'id') {

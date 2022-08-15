@@ -19,16 +19,16 @@
   padding: 0;
   position: relative;
 }
-.vf-tabs__list::before {
-  border-bottom: 2px solid #000000;
-  bottom: 0;
-  content: "";
-  height: 1px;
-  left: 0;
-  position: absolute;
-  width: 100%;
-  z-index: 1984;
-}
+// .vf-tabs__list::before {
+//   border-bottom: 2px solid #000000;
+//   bottom: 0;
+//   content: "";
+//   height: 1px;
+//   left: 0;
+//   position: absolute;
+//   width: 100%;
+//   z-index: 1984;
+// }
 
 .vf-tabs__item {
   display: inline-block;
@@ -55,14 +55,14 @@
 .vf-tabs__link:hover, .vf-tabs__link:focus {
   border-bottom-color: #54585a;
   color: #000000;
-  z-index: 5150;
+  z-index: 1150;
 }
 
 .vf-tabs__link.is-active {
   border-bottom-color: #3b6fb6;
   color: #3b6fb6;
   text-shadow: 1px 0 0 currentColor;
-  z-index: 5150;
+  z-index: 1150;
 }
 .vf-tabs__link.is-active:hover, .vf-tabs__link.is-active:focus {
   color: #3b6fb6;
@@ -77,3 +77,20 @@
       flex-basis: max-content;
 }
 
+// UNDRR theme
+// @todo rely on a class set on the body tag, a la: body.theme-undrr-corp-site
+.vf-tabs__list {
+  width: 100%;
+  background: #eef3f7;
+}
+.vf-tabs__link {
+  font-family: "Roboto Condensed";
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.vf-tabs__link.is-active {
+  color: #fff;
+  background-color: #6093bd;
+  text-shadow: none;
+  border-bottom: 2px solid #6093bd;
+}
